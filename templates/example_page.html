@@ -1,0 +1,84 @@
+{% extends 'template.html' %}
+{% block content %}
+
+<div>
+    <div class="col"></div>
+    <div class="col">
+            <div class="text-center">
+                <form method="POST" action="/soc_term_project/example_page">
+                    <div><b>검색어     </b><input type="text" name="search_word"></div>
+                    <div><b>인덱스     </b><input type="text" name="index"></div>
+                    <button type="submit">확인</button>
+                </form>
+            </div>
+    </div>
+
+    {% if word != None %}
+    <div class="row" style="margin-bottom: 50px">
+        <div class="col-md-6">
+            <table border="1">
+                <tbody>
+                    {% for res in resource['google']['searchResult'] %}
+                        <tr>
+                            <td>
+                                <div>{{ res['title'] }}</div>
+                                <div>{{ res['snippet'] }}</div>
+                                <div>{{ res['link'] }}</div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <table border="1">
+                <tbody>
+                    {% for res in resource['google']['searchResult'] %}
+                        <tr>
+                            <td>
+                                <div>{{ res['title'] }}</div>
+                                <div>{{ res['snippet'] }}</div>
+                                <div>{{ res['link'] }}</div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div>
+
+      <div class="row">
+        <div class="col-md-6">
+            <table border="1">
+                <tbody>
+                    {% for res in resource['google']['searchResult'] %}
+                        <tr>
+                            <td>
+                                <div>{{ res['title'] }}</div>
+                                <div>{{ res['snippet'] }}</div>
+                                <div>{{ res['link'] }}</div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <table border="1">
+                <tbody>
+                    {% for res in resource['youtube']['searchResult'] %}
+                        <tr>
+                            <td>
+                                <div>{{ res['title'] }}</div>
+                                <div>{{ res['snippet'] }}</div>
+                                <div>{{ res['link'] }}</div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}
