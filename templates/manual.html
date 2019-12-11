@@ -1,6 +1,61 @@
 {% extends 'template.html' %}
 {% block content %}
 
-manual
+<h3> REST API 서비스 설명 페이지 </h3>
+
+<ol style="margin-top: 50px ">
+    <li style="color: rgb(0, 0, 150)"><h5>서비스 설명</h5></li>
+    한 번의 검색으로 텍스트, 동영상, 학술정보, 강의 영상 등 여러 포맷의 결과를 제공하는 REST API 서비스
+
+    <li><h5 style="margin-top: 50px">사용 방법</h5></li>
+        <ul>
+            <li>요청 URL</li>
+                <p style="color: rgb(0, 0, 238)">http://54.172.120.138:8080/integrated_search/</p>
+            <li style="margin-top: 40px">요청 변수</li>
+                <div >
+                    <table border="1" class="col-md-6" style="width: 100%">
+                        <tbody>
+                            <tr class="text-center">
+                                <td>요청 변수</td> <td>값</td> <td>설명</td>
+                            </tr>
+                            <tr class="text-center">
+                                <td>searchWord</td> <td>string(필수)</td> <td>결과를 얻고 싶은 검색어</td>
+                            </tr>
+                            <tr class="text-center">
+                                <td>currentPage</td> <td>integer(선택)</td> <td>출력될 페이지</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            <li style="margin-top: 40px">출력 정보</li>
+                <div >
+                    <table border="1" class="col-md-6">
+                        <tbody style="width: 100%">
+                            <tr class="text-center">
+                                <td>필드</td> <td>값</td> <td>설명</td>
+                            </tr>
+                            <tr class="text-center">
+                                <td>nextPage</td> <td>integer</td> <td>다음 검색 페이지 번호</td>
+                            </tr>
+                            <tr class="text-center">
+                                <td>status</td> <td>integer</td> <td>검색 결과 상태</td>
+                            </tr>
+                            <tr class="text-center">
+                                <td>google</td> <td>string</td> <td>Google 사이트의 검색 결과<br>title=제목 | snippet=내용 | link=하이퍼링크</td>
+                            </tr>
+                            <tr class="text-center">
+                                <td>youtube</td> <td>string</td> <td>Youtube 사이트의 검색 결과<br>title=제목 | snippet=내용 | link=하이퍼링크</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            <li style="margin-top: 40px">요청 URL 예시</li>
+            <p style="color: rgb(0, 0, 238)">http://54.172.120.138:8080/integrated_search/파이썬으로 웹서비스 구축하기</p>
+            <p style="color: rgb(0, 0, 238)">http://54.172.120.138:8080/integrated_search/파이썬으로 웹서비스 구축하기/2</p>
+            <a href="/soc_term_project/rest_api_check">테스트 해보러 가기(클릭)</a>
+        </ul>
+
+
+</ol>
 
 {% endblock %}

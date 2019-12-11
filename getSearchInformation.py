@@ -1,3 +1,4 @@
+import math
 import pprint
 
 import requests
@@ -14,13 +15,13 @@ def getGoogleSearchInformation(str_input, index):
 
     if res.status_code == 200:
         docs = res.json()
-        nextIndex = docs['queries']['nextPage'][0]['startIndex']
+        nextIndex = math.trunc(int(docs['queries']['nextPage'][0]['startIndex'])/10) + 1
         result = []
         for item in docs['items']:
             tmp = {"title": item['title'], "snippet": item['snippet'], "link": item['link']}
             result.append(tmp)
         searchInformation = {"status": res.status_code,
-                             "nextIndex": nextIndex,
+                             "nextPage": nextIndex,
                              "searchResult": result
                              }
     else:
@@ -37,13 +38,13 @@ def getYoutubeSearchInformation(str_input, index):
 
     if res.status_code == 200:
         docs = res.json()
-        nextIndex = docs['queries']['nextPage'][0]['startIndex']
+        nextIndex = math.trunc(int(docs['queries']['nextPage'][0]['startIndex'])/10) + 1
         result = []
         for item in docs['items']:
             tmp = {"title": item['title'], "snippet": item['snippet'], "link": item['link']}
             result.append(tmp)
         searchInformation = {"status": res.status_code,
-                             "nextIndex": nextIndex,
+                             "nextPage": nextIndex,
                              "searchResult": result
                              }
     else:
