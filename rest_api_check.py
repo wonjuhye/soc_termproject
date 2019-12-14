@@ -1,6 +1,6 @@
 import json
 import requests
-from flask import Blueprint, render_template, make_response, request
+from flask import Blueprint, render_template, request
 
 resource_blueprint = Blueprint('soc_term_project', __name__)
 
