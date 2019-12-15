@@ -68,11 +68,10 @@
         <div class="col-md-6">
             <table border="1">
                 <tbody>
-                    {% for res in resource['youtube']['searchResult'] %}
+                    {% for res in resource['dbpia']['searchResult'] %}
                         <tr>
                             <td>
                                 <div>{{ res['title'] }}</div>
-                                <div>{{ res['snippet'] }}</div>
                                 <div>{{ res['link'] }}</div>
                             </td>
                         </tr>

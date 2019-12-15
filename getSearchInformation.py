@@ -67,14 +67,14 @@ def getDBPIASearchInformation(str_input, index):
         nextIndex = int(tree.find('paramdata').find('pagenumber').text) + 1
         result = []
         for item in tree.findall('./result/items/item'):
-            tmp = {"title": item.find('title').text, "link_url": item.find('link_url').text}
+            tmp = {"title": str(item.find('title').text).replace("<!HS>", "").replace("<!HE>", ""),
+                   "link": item.find('link_url').text}
             result.append(tmp)
 
         searchInformation = {"status": res.status_code,
                              "nextPage": nextIndex,
                              "searchResult": result
                              }
-        pprint.pprint(searchInformation)
     else:
         searchInformation = {"error": res.status_code}
 
