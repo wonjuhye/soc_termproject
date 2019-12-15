@@ -1,86 +1,85 @@
 {% extends 'template.html' %}
 {% block content %}
-
-<div>
-    <div class="col"></div>
-    <div class="col">
-            <div class="text-center">
-                <form method="POST" action="/soc_term_project/example_page">
-                    <h2> 학술 정보 통합 검색 서비스 </h2>
-                        <p style="margin-top: 30px"><tr class="text-center">
-                            <td>검색어</td> <td><input type="text" name="search_word" style="width:300px"></td>
-                            <td>페이지 번호</td> <td><input type="text" name="index" style="width:50px"></td>
-                        </tr></p>
-                        <button type="submit" class="text-center">확인</button>
-                </form>
-            </div>
+<div class="col">
+    <div class="text-center">
+        <form method="POST" action="/soc_term_project/example_page">
+            <h3 style="margin: 30px 0px 20px 0px; font-weight: 600">학술종합검색서비스</h3>
+            <tr class="text-center">
+                <td><strong>검색어&nbsp;</strong></td>
+                <td><input type="text" name="search_word" style="border: 0px; padding-left: 5px; height: 40px; width:300px"></td>
+                <td><strong>&nbsp;&nbsp;&nbsp;페이지 번호&nbsp;</strong></td>
+                <td><input type="text" name="index" style="border: 0px; padding-left: 5px; height: 40px; width:50px"></td>
+            </tr>
+            <button type="sumit" class="btn btn-info" style="font-size: 15px; font-weight: 500; margin-left: 20px">확인</button>
+        </form>
     </div>
-
-    {% if word != None %}
-    <div class="row" style="margin-bottom: 50px">
-        <div class="col-md-6">
-            <table border="1">
-                <tbody>
-                    {% for res in resource['google']['searchResult'] %}
-                        <tr>
-                            <td>
-                                <div>{{ res['title'] }}</div>
-                                <div>{{ res['snippet'] }}</div>
-                                <div>{{ res['link'] }}</div>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-6">
-            <table border="1">
-                <tbody>
-                    {% for res in resource['google']['searchResult'] %}
-                        <tr>
-                            <td>
-                                <div>{{ res['title'] }}</div>
-                                <div>{{ res['snippet'] }}</div>
-                                <div>{{ res['link'] }}</div>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-    </div>
-
-      <div class="row">
-        <div class="col-md-6">
-            <table border="1">
-                <tbody>
-                    {% for res in resource['google']['searchResult'] %}
-                        <tr>
-                            <td>
-                                <div>{{ res['title'] }}</div>
-                                <div>{{ res['snippet'] }}</div>
-                                <div>{{ res['link'] }}</div>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-6">
-            <table border="1">
-                <tbody>
-                    {% for res in resource['dbpia']['searchResult'] %}
-                        <tr>
-                            <td>
-                                <div>{{ res['title'] }}</div>
-                                <div>{{ res['link'] }}</div>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
-    {% endif %}
 </div>
 
+{% if word != None %}
+<div class="row" style="margin-top: -20px">
+    <div class="col-md-6">
+        <div class="card" style="height: 350px">
+            <div class="card-header card-header-text card-header-warning">
+                <div class="card-text">
+                    <h5 class="card-title" style="font-weight: 500">Google</h5>
+                </div>
+            </div>
+            <div class="card-body" style="overflow-y:scroll">
+                {% for res in resource['google']['searchResult'] %}
+                <div style="font-size: 14px; font-weight: 600">{{ res['title'] }}</div>
+                <div style="font-size: 13px">{{ res['snippet'] }}</div>
+                <a href="{{ res['link'] }}" class="card-link" style="font-size: 12px">{{ res['link'] }}</a>
+                <p class="card-text"></p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card" style="height: 350px">
+          <div class="card-header card-header-text card-header-danger">
+            <div class="card-text">
+              <h5 class="card-title" style="font-weight: 500">Youtube</h5>
+            </div>
+          </div>
+          <div class="card-body" style="overflow-y:scroll">
+              {% for res in resource['youtube']['searchResult'] %}
+                <div style="font-size: 14px; font-weight: 600">{{ res['title'] }}</div>
+                <div style="font-size: 13px">{{ res['snippet'] }}</div>
+                <a href="{{ res['link'] }}" class="card-link" style="font-size: 12px">{{ res['link'] }}</a>
+                <p class="card-text"></p>
+                {% endfor %}
+          </div>
+      </div>
+    </div>
+</div>
+<div class="row" style="margin-top: -30px">
+    <div class="col-md-6">
+        <div class="card" style="height: 350px">
+            <div class="card-header card-header-text card-header-success">
+                <div class="card-text">
+                    <h5 class="card-title" style="font-weight: 500">DBpia</h5>
+                </div>
+            </div>
+            <div class="card-body" style="overflow-y:scroll">
+                {% for res in resource['dbpia']['searchResult'] %}
+                <div style="font-size: 14px; font-weight: 600">{{ res['title'] }}</div>
+                <a href="{{ res['link'] }}" class="card-link" style="font-size: 12px">{{ res['link'] }}</a>
+                <p class="card-text"></p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card" style="height: 350px">
+          <div class="card-header card-header-text">
+            <div class="card-text">
+              <h5 class="card-title" style="font-weight: 500">KOCW</h5>
+            </div>
+          </div>
+          <div class="card-body" style="overflow-y:scroll">      
+          </div>
+      </div>
+    </div>
+</div>
+{% endif %}
 {% endblock %}
