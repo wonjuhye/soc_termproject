@@ -1,5 +1,5 @@
 from flask_restful import Resource, reqparse
-from getSearchInformation import getGoogleSearchInformation, getYoutubeSearchInformation, getDBPIASearchInformation, getKOCWSearchInformation
+from getSearchInformation import getGoogleSearchInformation, getYoutubeSearchInformation, getDBPIASearchInformation
 
 
 class SearchResult(Resource):
@@ -11,7 +11,7 @@ class SearchResult(Resource):
         googleResult = getGoogleSearchInformation(search_string, 1);
         youtubeResult = getYoutubeSearchInformation(search_string, 1);
         dbpiaResult = getDBPIASearchInformation(search_string, 1);
-       # kocwResult = getKOCWSearchInformation(search_string, 1)
+        #kocwResult = getKOCWSearchInformation(kocw_word, 1)
 
         if 'error' not in googleResult.keys():
             result.update({"google": googleResult})
@@ -25,8 +25,8 @@ class SearchResult(Resource):
             result.update({"dbpia": dbpiaResult})
         else:
             result.update({"dbpia": dbpiaResult["error"]})
-        #if 'error' not in kocwResult.keys():
-         #   result.update({"kocw": kocwResult})
+        # if 'error' not in kocwResult.keys():
+        #     result.update({"kocw": kocwResult})
 
         if len(result) == 0:
             result.update({"error": "Data Not Found"})
@@ -41,10 +41,10 @@ class MultiSearchResult(Resource):
 
     def get(self, search_string, index):
         result = {}
-        googleResult = getGoogleSearchInformation(search_string, index);
-        youtubeResult = getYoutubeSearchInformation(search_string, index);
-        dbpiaResult = getDBPIASearchInformation(search_string, index);
-        #kocwResult = getKOCWSearchInformation(search_string, index)
+        googleResult = getGoogleSearchInformation(search_string, 1);
+        youtubeResult = getYoutubeSearchInformation(search_string, 1);
+        dbpiaResult = getDBPIASearchInformation(search_string, 1);
+        #kocwResult = getKOCWSearchInformation(kocw_word, 1)
 
         if 'error' not in googleResult.keys():
             result.update({"google": googleResult})
@@ -58,8 +58,8 @@ class MultiSearchResult(Resource):
             result.update({"dbpia": dbpiaResult})
         else:
             result.update({"dbpia": dbpiaResult["error"]})
-        #if 'error' not in kocwResult.keys():
-         #   result.update({"kocw": kocwResult})
+        # if 'error' not in kocwResult.keys():
+        #     result.update({"kocw": kocwResult})
 
         if len(result) == 0:
             result.update({"error": "Data Not Found"})
