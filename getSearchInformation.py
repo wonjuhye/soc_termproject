@@ -2,7 +2,8 @@ import json
 import math
 import xml.etree.ElementTree as ET
 import requests
-from keys import GOOGLE_API_KEY, GOOGLE_APT_google_KEY, GOOGLE_APT_youtube_KEY, DBPIA_API_KEY, KOCW_API_KEY
+from keys import GOOGLE_API_KEY_1, GOOGLE_APT_google_KEY, GOOGLE_APT_youtube_KEY, DBPIA_API_KEY, KOCW_API_KEY, \
+    GOOGLE_API_KEY_2
 
 GOOGLE_BASE_URL = "https://www.googleapis.com/customsearch/v1?"
 DBPIA_BASE_URL = "http://api.dbpia.co.kr/v2/search/search.xml?"
@@ -11,7 +12,7 @@ KOCW_BASE_URL = "http://www.kocw.net/home/api/handler.do?"
 
 def getGoogleSearchInformation(str_input, index):
     res = requests.get(
-        url=GOOGLE_BASE_URL + 'key=' + GOOGLE_API_KEY + '&cx=' + GOOGLE_APT_google_KEY +
+        url=GOOGLE_BASE_URL + 'key=' + GOOGLE_API_KEY_1 + '&cx=' + GOOGLE_APT_google_KEY +
             '&q=' + str_input + '&start=' + str(1 + (index - 1) * 10)
     )
 
@@ -34,7 +35,7 @@ def getGoogleSearchInformation(str_input, index):
 
 def getYoutubeSearchInformation(str_input, index):
     res = requests.get(
-        url=GOOGLE_BASE_URL + 'key=' + GOOGLE_API_KEY + '&cx=' + GOOGLE_APT_youtube_KEY +
+        url=GOOGLE_BASE_URL + 'key=' + GOOGLE_API_KEY_2 + '&cx=' + GOOGLE_APT_youtube_KEY +
             '&q=' + str_input + '&start=' + str(1 + (index - 1) * 10)
     )
 
@@ -57,14 +58,14 @@ def getYoutubeSearchInformation(str_input, index):
 
 def getDBPIASearchInformation(str_input, index):
     res = requests.get(
-        url=DBPIA_BASE_URL + 'key=' + DBPIA_API_KEY + '&target=se' + '&searchall=' +
-            str_input + '&pagenumber=' + str(1 + (index - 1) * 10)
+        url=DBPIA_BASE_URL + 'key=' + DBPIA_API_KEY + '&target=se' + '&searchall=' + str_input
+            + '&pagenumber=' + str(index)
     )
 
     if res.status_code == 200:
         docs = res.text
         tree = ET.fromstring(docs)
-        nextIndex = int(tree.find('paramdata').find('pagenumber').text) + 1
+        nextIndex = index + 1
         result = []
         for item in tree.findall('./result/items/item'):
             tmp = {"title": str(item.find('title').text).replace("<!HS>", "").replace("<!HE>", ""),

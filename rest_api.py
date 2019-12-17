@@ -8,9 +8,9 @@ class SearchResult(Resource):
 
     def get(self, search_string):
         result = {}
-        googleResult = getGoogleSearchInformation(search_string, 1);
-        youtubeResult = getYoutubeSearchInformation(search_string, 1);
-        dbpiaResult = getDBPIASearchInformation(search_string, 1);
+        googleResult = getGoogleSearchInformation(search_string, 1)
+        youtubeResult = getYoutubeSearchInformation(search_string, 1)
+        dbpiaResult = getDBPIASearchInformation(search_string, 1)
         #kocwResult = getKOCWSearchInformation(kocw_word, 1)
 
         if 'error' not in googleResult.keys():
@@ -41,9 +41,9 @@ class MultiSearchResult(Resource):
 
     def get(self, search_string, index):
         result = {}
-        googleResult = getGoogleSearchInformation(search_string, 1);
-        youtubeResult = getYoutubeSearchInformation(search_string, 1);
-        dbpiaResult = getDBPIASearchInformation(search_string, 1);
+        googleResult = getGoogleSearchInformation(search_string, index)
+        youtubeResult = getYoutubeSearchInformation(search_string, index)
+        dbpiaResult = getDBPIASearchInformation(search_string, index)
         #kocwResult = getKOCWSearchInformation(kocw_word, 1)
 
         if 'error' not in googleResult.keys():
